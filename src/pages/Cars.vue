@@ -1,32 +1,34 @@
 <template>
     <div id="background" />
-    <div class="stats">
-        <h2>Your Stats</h2>
-        <h3>Car: {{ car }}</h3>
-        <h3>Hotness: {{ hotness }}</h3>
-        <h3>Wins: {{ wins }}</h3>
-    </div>
-    <div class="main-content">
-        <div v-if="gameState === GameState.Searching">
-            <h2>You are a cool young lesbian with a mean streak and a love for cars</h2>
-            <button @click="gameState = GameState.Found">Go looking for lesbians</button>
+    <div class="whole-content">
+        <div class="stats">
+            <h2>Your Stats</h2>
+            <span>Car: {{ car }}</span>
+            <span>Hotness: {{ hotness }}</span>
+            <span>Wins: {{ wins }}</span>
         </div>
-        <div v-else-if="gameState === GameState.Found">
-            <h2>You found a lesbian!</h2>
-            <div>
-                <button @click="battle(BattleType.HotBattle)">Challenge her to a makeout battle</button>
-                <button @click="battle(BattleType.CarBattle)">Challenge her to a car battle</button>
+        <div>
+            <div v-if="gameState === GameState.Searching">
+                <h2>You are a cool young lesbian with a mean streak and a love for cars</h2>
+                <button @click="gameState = GameState.Found">Go looking for lesbians</button>
             </div>
-        </div>
-        <div v-else-if="gameState === GameState.Victory">
-            <h2>Victory!</h2>
-            <h3>{{ victoryMessage }}</h3>
-            <button @click="restart()">Play again</button>
-        </div>
-        <div v-else-if="gameState === GameState.Defeat">
-            <h2>Defeat!</h2>
-            <h3>{{ defeatMessage }}</h3>
-            <button @click="restart(true)">Start Over...</button>
+            <div v-else-if="gameState === GameState.Found">
+                <h2>You found a lesbian!</h2>
+                <div class="multibutton">
+                    <button @click="battle(BattleType.HotBattle)">Challenge her to a makeout battle</button>
+                    <button @click="battle(BattleType.CarBattle)">Challenge her to a car race</button>
+                </div>
+            </div>
+            <div v-else-if="gameState === GameState.Victory">
+                <h2>Victory!</h2>
+                <h3>{{ victoryMessage }}</h3>
+                <button @click="restart()">Play again</button>
+            </div>
+            <div v-else-if="gameState === GameState.Defeat">
+                <h2>Defeat!</h2>
+                <h3>{{ defeatMessage }}</h3>
+                <button @click="restart(true)">Start Over...</button>
+            </div>
         </div>
     </div>
     <div class="audio-controls">
@@ -154,16 +156,28 @@ onUnmounted(() => {
     cursor: pointer;
 }
 
-.main-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.whole-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10vh;
 }
 
 .stats {
-    position: absolute;
-    top: 50px;
+    top: 0px;
     left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1vh;
+    h2 {
+        margin: 0;
+    }
+}
+
+.multibutton {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
 }
 </style>

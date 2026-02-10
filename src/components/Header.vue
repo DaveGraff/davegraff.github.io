@@ -14,7 +14,6 @@
 
 <style scoped>
 .site-header {
-  padding: 1rem 0;
   position: absolute;
   top: 0;
   left: 0;
@@ -25,8 +24,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 960px;
   margin: 0 auto;
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 .logo {
