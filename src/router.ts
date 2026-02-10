@@ -17,8 +17,8 @@ const router = createRouter({
 })
 
 // Handle GitHub Pages redirect
-// const isGitHubPages = window.location.hostname === 'davegraff.github.io'
-// if (isGitHubPages) {
+const isGitHubPages = window.location.hostname === 'davegraff.github.io'
+if (isGitHubPages) {
   const params = new URLSearchParams(window.location.search)
   const redirect = params.get('p')
   if (redirect) {
@@ -35,6 +35,6 @@ const router = createRouter({
       router.replace('/not-found')
     }
   }
-// }
+}
 
 export default router

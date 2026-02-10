@@ -26,7 +26,8 @@
     // browser shows the error page or your app. If it shows your app, then
     // pathSegmentsToKeep should be set to the number of path segments after
     // the repository name.
-    var pathSegmentsToKeep = 1;
+    // For user/organization pages at the root domain, set to 0
+    var pathSegmentsToKeep = 0;
 
     var l = window.location;
     l.replace(
