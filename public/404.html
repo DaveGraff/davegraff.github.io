@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dave Graff</title>
+  <script>
+    // Single Page Apps for GitHub Pages
+    // MIT License
+    // https://github.com/rafgraph/spa-github-pages
+    // This script takes the current url and converts the path and query
+    // string into just a query string, and then redirects the browser
+    // to the new url with only a query string and hash fragment,
+    // e.g. https://www.foo.tld/one/two?a=b&c=d#qwe, becomes
+    // https://www.foo.tld/?p=/one/two&q=a=b~and~c=d#qwe
+    // Note: this 404.html file must be at least 512 bytes for it to work
+    // with Internet Explorer (it is currently > 512 bytes)
+
+    // If you're creating a Project Pages site and NOT using a custom domain,
+    // then set pathSegmentsToKeep to 1 (enterprise users may need to set it to > 1).
+    // This way the code will only replace the path part after the repository.
+    // For example, if your GitHub Pages repository is at https://username.github.io/my-project,
+    // then set pathSegmentsToKeep to 1 (enterprise users may need to set it to > 1).
+    // The way to check is to load a page from the repository directly
+    // (e.g. https://username.github.io/my-project/some/path) and see if the
+    // browser shows the error page or your app. If it shows your app, then
+    // pathSegmentsToKeep should be set to the number of path segments after
+    // the repository name.
+    var pathSegmentsToKeep = 1;
+
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?p=/' +
+      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('&') + '&' +
+      l.search.slice(1).replace(/&/g, '%26') + '#' + l.hash.slice(1)
+    );
+  </script>
+</head>
+<body>
+</body>
+</html>
