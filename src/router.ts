@@ -17,24 +17,29 @@ const router = createRouter({
 })
 
 // Handle GitHub Pages redirect
-const isGitHubPages = window.location.hostname === 'davegraff.github.io'
-if (isGitHubPages) {
-  const params = new URLSearchParams(window.location.search)
-  const redirect = params.get('p')
-  if (redirect) {
-    // Check if the redirect path exists in our routes
-    const validPaths = routes.map(route => route.path)
-    const pathExists = validPaths.includes(redirect) || 
-                      (redirect !== '/' && validPaths.some(path => 
-                        path !== '/' && redirect.startsWith(path.replace('*', ''))))
-    
-    if (pathExists) {
-      router.replace(redirect)
-    } else {
-      // Route doesn't exist, show 404 page
-      router.replace('/not-found')
+router.beforeEach((to, _, next) => {
+  const isGitHubPages = window.location.hostname === 'davegraff.github.io'
+  if (isGitHubPages && to.path === '/' && window.location.search) {
+    const params = new URLSearchParams(window.location.search)
+    const redirect = params.get('p')
+    if (redirect) {
+      // Check if the redirect path exists in our routes
+      const validPaths = routes.map(route => route.path)
+      const pathExists = validPaths.includes(redirect) || 
+                        (redirect !== '/' && validPaths.some(path => 
+                          path !== '/' && redirect.startsWith(path.replace('*', ''))))
+      
+      if (pathExists) {
+        next(redirect)
+        return
+      } else {
+        // Route doesn't exist, show 404 page
+        next('/not-found')
+        return
+      }
     }
   }
-}
+  next()
+})
 
 export default router
