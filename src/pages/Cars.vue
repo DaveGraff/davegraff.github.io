@@ -32,8 +32,11 @@
         </div>
     </div>
     <div class="audio-controls">
-        <span v-if="isAudioPlaying" class="pi pi-volume-up" @click="toggleAudio"></span>
-        <span v-else class="pi pi-volume-off" @click="toggleAudio"></span>
+        <div>
+            <span v-if="isAudioPlaying" class="pi pi-volume-up" @click="toggleAudio"></span>
+            <span v-else class="pi pi-volume-off" @click="toggleAudio"></span>
+        </div>
+        <span>Music by <a href="https://pixabay.com/music/techno-trance-heavy-german-techno-beat-dark-industrial-instrumental-403003/">nickpanek</a></span>
     </div>
 </template>
 
@@ -154,6 +157,17 @@ onUnmounted(() => {
     bottom: 10px;
     left: 10px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    span {
+        cursor: default;
+        font-size: 1rem;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+    }
 }
 
 .whole-content {
