@@ -1,5 +1,5 @@
 <template>
-    <div id="full-screen" />
+  <div id="full-screen" />
 </template>
 
 <style>

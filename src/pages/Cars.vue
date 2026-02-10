@@ -1,43 +1,61 @@
 <template>
-    <div id="background" />
-    <div class="whole-content">
-        <div class="stats">
-            <h2>Your Stats</h2>
-            <span>Car: {{ car }}</span>
-            <span>Hotness: {{ hotness }}</span>
-            <span>Wins: {{ wins }}</span>
-        </div>
-        <div>
-            <div v-if="gameState === GameState.Searching">
-                <h2>You are a cool young lesbian with a mean streak and a love for cars</h2>
-                <button @click="gameState = GameState.Found">Go looking for lesbians</button>
-            </div>
-            <div v-else-if="gameState === GameState.Found">
-                <h2>You found a lesbian!</h2>
-                <div class="multibutton">
-                    <button @click="battle(BattleType.HotBattle)">Challenge her to a makeout battle</button>
-                    <button @click="battle(BattleType.CarBattle)">Challenge her to a car race</button>
-                </div>
-            </div>
-            <div v-else-if="gameState === GameState.Victory">
-                <h2>Victory!</h2>
-                <h3>{{ victoryMessage }}</h3>
-                <button @click="restart()">Play again</button>
-            </div>
-            <div v-else-if="gameState === GameState.Defeat">
-                <h2>Defeat!</h2>
-                <h3>{{ defeatMessage }}</h3>
-                <button @click="restart(true)">Start Over...</button>
-            </div>
-        </div>
+  <div id="background" />
+  <div class="whole-content">
+    <div class="stats">
+      <h2>Your Stats</h2>
+      <span>Car: {{ car }}</span>
+      <span>Hotness: {{ hotness }}</span>
+      <span>Wins: {{ wins }}</span>
     </div>
-    <div class="audio-controls">
-        <div>
-            <span v-if="isAudioPlaying" class="pi pi-volume-up" @click="toggleAudio"></span>
-            <span v-else class="pi pi-volume-off" @click="toggleAudio"></span>
+    <div>
+      <div v-if="gameState === GameState.Searching">
+        <h2>You are a cool young lesbian with a mean streak and a love for cars</h2>
+        <button @click="gameState = GameState.Found">
+          Go looking for lesbians
+        </button>
+      </div>
+      <div v-else-if="gameState === GameState.Found">
+        <h2>You found a lesbian!</h2>
+        <div class="multibutton">
+          <button @click="battle(BattleType.HotBattle)">
+            Challenge her to a makeout battle
+          </button>
+          <button @click="battle(BattleType.CarBattle)">
+            Challenge her to a car race
+          </button>
         </div>
-        <span>Music by <a href="https://pixabay.com/music/techno-trance-heavy-german-techno-beat-dark-industrial-instrumental-403003/">nickpanek</a></span>
+      </div>
+      <div v-else-if="gameState === GameState.Victory">
+        <h2>Victory!</h2>
+        <h3>{{ victoryMessage }}</h3>
+        <button @click="restart()">
+          Play again
+        </button>
+      </div>
+      <div v-else-if="gameState === GameState.Defeat">
+        <h2>Defeat!</h2>
+        <h3>{{ defeatMessage }}</h3>
+        <button @click="restart(true)">
+          Start Over...
+        </button>
+      </div>
     </div>
+  </div>
+  <div class="audio-controls">
+    <div>
+      <span
+        v-if="isAudioPlaying"
+        class="pi pi-volume-up"
+        @click="toggleAudio"
+      />
+      <span
+        v-else
+        class="pi pi-volume-off"
+        @click="toggleAudio"
+      />
+    </div>
+    <span>Music by <a href="https://pixabay.com/music/techno-trance-heavy-german-techno-beat-dark-industrial-instrumental-403003/">nickpanek</a></span>
+  </div>
 </template>
 
 <script setup lang="ts">
