@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import Header from './components/Header.vue'
+import Background from './components/Background.vue'
 </script>
 
 <template>
+  <Background />
   <Header />
   <router-view />
 </template>

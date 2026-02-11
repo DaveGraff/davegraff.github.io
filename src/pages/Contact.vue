@@ -1,9 +1,4 @@
-<script setup lang="ts">
-    import Background from '../components/Background.vue'
-</script>
-
 <template>
-  <Background />
   <h1>Contact me</h1>
   <h3>
     To avoid web scrapers & spammers, please contact me through LinkedIn <a

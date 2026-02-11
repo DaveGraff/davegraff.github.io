@@ -1,10 +1,4 @@
-<script setup lang="ts">
-import Background from '../components/Background.vue'
-</script>
-
 <template>
-  <Background />
-
   <h1>Hi, I'm Dave.</h1>
 
   <div class="card">
