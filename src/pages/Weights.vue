@@ -13,18 +13,20 @@
     </div>
     <button class="calculate-btn" @click="calculate">Calculate</button>
   </div>
-  <div class="weight-options">
-    <label for="plates">Available Plates</label>
-      <ul v-for="{ weight, plate } in sortedWeights" :key="weight">
-        {{ weight }}lbs: 
-        <button @click="decrementPlate(weight)">-</button>
-        {{ plate.count }}
-        <button @click="incrementPlate(weight)">+</button>
-      </ul>
-    <button @click="saveWeights">Save</button>
-  </div>
   <div v-if="resultText" class="result-text">
     <h2>{{ resultText }}</h2>
+  </div>
+  <div class="weight-options">
+    <label for="plates">Available Plates</label>
+      <div v-for="{ weight, plate } in sortedWeights" :key="weight" class="plate-row">
+        <span>{{ weight }}lbs:</span>
+        <div class="weight-count-options">
+          <button @click="decrementPlate(weight)">-</button>
+          <span>{{ plate.count }}</span>
+          <button @click="incrementPlate(weight)">+</button>
+        </div>
+      </div>
+    <button @click="saveWeights">Save</button>
   </div>
 </template>
 
@@ -149,7 +151,6 @@ const calculate = () => {
     flex-direction: column;
     position: fixed;
     left: 1rem;
-    opacity: 0.8;
     top: 50%;
     transform: translateY(-50%);
     background-color: white;
@@ -158,11 +159,37 @@ const calculate = () => {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     max-width: 200px;
 
-    button {
-        max-height: 24px;
-        padding: 0.25rem 0.5rem;
-        display: inline-block;
+    .plate-row {
+        opacity: 1;
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin: 0.25rem 0;
     }
+
+    button {
+        height: 24px;
+        padding: 0.25rem 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .weight-options {
+        position: static;
+        transform: none;
+        max-width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+.weight-count-options {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 1;
 }
 
 .result-text h2 {
