@@ -3,11 +3,13 @@ import Lander from './pages/Lander.vue'
 import Contact from './pages/Contact.vue'
 import NotFound from './pages/NotFound.vue'
 import Cars from './pages/Cars.vue'
+import Weights from './pages/Weights.vue'
 
 const routes = [
   { path: '/', name: 'home', component: Lander },
   { path: '/contact', name: 'contact', component: Contact },
   { path: '/cars', name: 'cars', component: Cars },
+  { path: '/weights', name: 'weights', component: Weights },
   { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound },
 ]
 
